@@ -26,13 +26,13 @@
 
     <EditText
         android:id="@+id/etUsuario"
-        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
         android:layout_margin="10dp"
-        tools:text="Usuario"
-        />
+        android:minHeight="48dp"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        tools:text="Usuario" />
     <TextView
         android:textColor="@color/white"
         android:layout_width="wrap_content"
@@ -40,16 +40,17 @@
         android:text="Ingresar Contraseña"
         android:textSize="20sp"
         />
+
     <EditText
         android:id="@+id/etPassword"
-        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
         android:layout_margin="10dp"
         android:inputType="textPassword"
-        tools:text="Prueba"
-        />
+        android:minHeight="48dp"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        tools:text="Prueba" />
     <CheckBox
         android:id="@+id/cbRecordarUsuario"
         android:layout_width="wrap_content"

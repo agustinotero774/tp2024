@@ -6,45 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:gravity="center"
     android:orientation="vertical"
     android:background="@color/black"
     >
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/primary_layout"
 
-         <TextView
-        android:textAlignment="center"
-                android:textColor="@color/white"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPeliculas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pelicula = Ghosted"
-         />
-   <TextView
-       android:textAlignment="center"
-       android:textColor="@color/white"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="Fecha de Estreno = 2023-04-18"
-       />
-   <TextView
-       android:textAlignment="center"
-       android:textColor="@color/white"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_pelicula">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- ImageView para mostrar la imagen -->
-        <ImageView
-            android:id="@+id/miImagen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/img3"
-
-            />
-    </RelativeLayout>
-
+    </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

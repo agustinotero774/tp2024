@@ -4,10 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.Telephony.Mms.Intents
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -20,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var cbRecordarUsuario : CheckBox
     lateinit var btnRegistrarse : Button
     lateinit var btnIniciarSesion : Button
+    lateinit var toolbar : Toolbar
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +35,10 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.title = "Login"
+
         etUsuario = findViewById(R.id.etUsuario)
         etPassword = findViewById(R.id.etPassword)
         cbRecordarUsuario = findViewById(R.id.cbRecordarUsuario)
@@ -38,21 +46,11 @@ class LoginActivity : AppCompatActivity() {
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion)
 
         btnRegistrarse.setOnClickListener {
-
-            var mensaje = ""
-
-            Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show()
-
             val intent = Intent(this,FormularioUsuarioActivity::class.java)
             startActivity(intent)
-
-
-
-
-
         }
-        btnIniciarSesion.setOnClickListener {
 
+        btnIniciarSesion.setOnClickListener {
         var usuario = etUsuario.text.toString()
         if (etUsuario.text.toString().isEmpty() || etPassword.text.toString().isEmpty()){
             var mensaje = "Completar Datos"
@@ -72,5 +70,17 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.itemPrueba){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }

@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -15,6 +16,7 @@ class FormularioUsuarioActivity : AppCompatActivity() {
     lateinit var etCrearPassword : EditText
     lateinit var etCrearCorreo : EditText
     lateinit var btnFinalizarRegistro : Button
+    lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +28,10 @@ class FormularioUsuarioActivity : AppCompatActivity() {
             insets
 
         }
+        toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar!!.title = "Registrarse"
+
         btnFinalizarRegistro = findViewById(R.id.btnFinalizarRegistro)
         etCrearUsuario = findViewById(R.id.etCrearUsuario)
         etCrearPassword = findViewById(R.id.etCrearContraseña)

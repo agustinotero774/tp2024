@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 class FormularioUsuarioActivity : AppCompatActivity() {
     lateinit var etCrearUsuario : EditText
     lateinit var etCrearPassword : EditText
-    lateinit var etCrearCorreo : EditText
+    lateinit var etReescribirContrasenia : EditText
     lateinit var btnFinalizarRegistro : Button
     lateinit var toolbar: Toolbar
 
@@ -35,17 +35,25 @@ class FormularioUsuarioActivity : AppCompatActivity() {
         btnFinalizarRegistro = findViewById(R.id.btnFinalizarRegistro)
         etCrearUsuario = findViewById(R.id.etCrearUsuario)
         etCrearPassword = findViewById(R.id.etCrearContraseña)
-        etCrearCorreo = findViewById(R.id.etCrearCorreo)
+        etReescribirContrasenia = findViewById(R.id.etReescribirContraseña)
         btnFinalizarRegistro.setOnClickListener {
 
-            var mensaje = "Funciona"
+            var usuario = etCrearUsuario.text.toString()
+            var contrasenia = etCrearPassword.text.toString()
 
-            if (etCrearUsuario.text.toString().isEmpty() || etCrearPassword.text.toString().isEmpty()||etCrearCorreo.text.toString().isEmpty()){
+            if (usuario.isEmpty() || contrasenia.isEmpty()||etReescribirContrasenia.text.toString().isEmpty()){
                 var mensaje = "Completar Datos"
                 Toast.makeText(this,mensaje,Toast.LENGTH_SHORT).show()
             }else {
-                val intent = Intent(this,MainActivity::class.java)
-                startActivity(intent)
+                if(etCrearPassword.text.toString().equals(etReescribirContrasenia.text.toString())){
+                    val nuevoUsuario=Usuario(usuario,contrasenia)
+                    AppDatabase.getDatabase(this).usuarioDao().insertUsuario(nuevoUsuario)
+
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, getString(R.string.contrasenasInvalidas),Toast.LENGTH_SHORT).show()
+                }
             }
 
 

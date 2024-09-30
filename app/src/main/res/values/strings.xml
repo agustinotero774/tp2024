@@ -2,4 +2,8 @@
     <string name="app_name">tp2024</string>
     <string name="Prueba">Lista</string>
     <string name="ir_a_peliculas">Ir a peliculas</string>
+    <string name="contrasenasInvalidas">Las contraseñas deben coincidir</string>
+    <string name="nombre_usuario">NOMBRE</string>
+    <string name="passwor_usuario">PASSWORD</string>
+    <string name="sp_credenciales">SP_CREDENCIALES</string>
 </resources>

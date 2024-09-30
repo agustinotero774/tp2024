@@ -24,12 +24,21 @@ class MainActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.title = "Peliculas"
+        saludarUsuario()
 
         rvPeliculas=findViewById(R.id.rvPeliculas)
         peliculasAdapter= PeliculaAdapter(getPeliculas(), this)
         rvPeliculas.adapter=peliculasAdapter
     }
 
+    private fun saludarUsuario(){
+        var bundle: Bundle? = intent.extras
+        if(bundle!=null){
+            var usuario=bundle?.getString(resources.getString(R.string.nombre_usuario))
+            Toast.makeText(this,"Bienvenido $usuario",Toast.LENGTH_SHORT).show()
+        }
+
+    }
     private fun getPeliculas(): MutableList<Pelicula> {
         var peliculas: MutableList<Pelicula> = ArrayList()
 

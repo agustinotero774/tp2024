@@ -13,9 +13,14 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/primary_layout"
-        
-        />
 
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:src="@drawable/cuadradomoviedb"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="35dp"/>
     <TextView
         android:textColor="@color/white"
         android:layout_width="wrap_content"
@@ -32,7 +37,7 @@
         android:minHeight="48dp"
         android:textColor="@color/white"
         android:textSize="15sp"
-        tools:text="Usuario" />
+        tools:text="Usuario"/>
     <TextView
         android:textColor="@color/white"
         android:layout_width="wrap_content"
@@ -69,13 +74,15 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnIniciarSesion"
             android:text="Iniciar Sesión"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.5"
+            android:backgroundTint="@color/celesteMovieDb"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnRegistrar"
             android:text="Registrarse"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.5"
+            android:backgroundTint="@color/celesteMovieDb"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -28,22 +28,27 @@
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:layout_margin="10dp"
+        tools:text="Usuario"
+        android:padding="12dp"
         />
     <TextView
         android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ingrese Contraseña"
+        android:text="Ingrese Contrasenia"
         android:textSize="20sp"
+
         />
     <EditText
-        android:id="@+id/etCrearContraseña"
+        android:id="@+id/etCrearContrasenia"
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:inputType="textPassword"
         android:layout_margin="10dp"
+        tools:text="Contra"
+        android:padding="12dp"
         />
     <TextView
         android:textColor="@color/white"
@@ -53,13 +58,15 @@
         android:textSize="20sp"
         />
     <EditText
-        android:id="@+id/etReescribirContraseña"
+        android:id="@+id/etReescribirContrasenia"
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:inputType="textPassword"
         android:layout_margin="10dp"
+        tools:text="Contra"
+        android:padding="12dp"
         />
     <LinearLayout
         android:weightSum="1"
@@ -71,7 +78,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnFinalizarRegistro"
             android:text="Finalizar Registro"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.5"
+            android:backgroundTint="@color/celesteMovieDb"/>
 
     </LinearLayout>
 

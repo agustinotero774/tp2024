@@ -6,4 +6,6 @@
     <string name="nombre_usuario">NOMBRE</string>
     <string name="passwor_usuario">PASSWORD</string>
     <string name="sp_credenciales">SP_CREDENCIALES</string>
+    <string name="api_key">e5007c34facfeecf5b5aef4209ada6b9</string>
+    <string name="title_activity_detalle">DetalleActivity</string>
 </resources>

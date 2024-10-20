@@ -3,6 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FA0000</color>
-    <color name="colorToolbar">#2553FF</color>
-    <color name="colorPeliculas">#91BFE6</color>
+    <color name="colorToolbar">#0d253f</color>
+    <color name="amarillo">#FFEB3B</color>
+    <color name="celesteMovieDb">#01b4e4</color>
+    <color name="verdeMovieDb">#90cea1</color>
+    <color name="gris">#1E1E1E</color>
 </resources>

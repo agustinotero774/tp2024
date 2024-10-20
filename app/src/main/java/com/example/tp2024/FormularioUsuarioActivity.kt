@@ -34,8 +34,8 @@ class FormularioUsuarioActivity : AppCompatActivity() {
 
         btnFinalizarRegistro = findViewById(R.id.btnFinalizarRegistro)
         etCrearUsuario = findViewById(R.id.etCrearUsuario)
-        etCrearPassword = findViewById(R.id.etCrearContraseña)
-        etReescribirContrasenia = findViewById(R.id.etReescribirContraseña)
+        etCrearPassword = findViewById(R.id.etCrearContrasenia)
+        etReescribirContrasenia = findViewById(R.id.etReescribirContrasenia)
         btnFinalizarRegistro.setOnClickListener {
 
             var usuario = etCrearUsuario.text.toString()

@@ -1,15 +1,15 @@
 package com.example.tp2024
 
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
+import android.util.Log
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tp2024.api.MovieDbClient
+import com.example.tp2024.api.Pelicula
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,14 +21,43 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.title = "Peliculas"
         saludarUsuario()
 
         rvPeliculas=findViewById(R.id.rvPeliculas)
-        peliculasAdapter= PeliculaAdapter(getPeliculas(), this)
+        peliculasAdapter= PeliculaAdapter(emptyList<Pelicula>(), this,
+            object : peliculaClickedListener{
+                override fun onPeliculaClicked(pelicula: Pelicula) {
+                    navigateTo(pelicula)
+                }
+            })
         rvPeliculas.adapter=peliculasAdapter
+
+
+
+
+        thread {
+            val apiKey = getString(R.string.api_key)
+            val peliculasPopulares = MovieDbClient.service.listaPeliculasPopulares(apiKey)
+            val body = peliculasPopulares.execute().body()
+
+            runOnUiThread {
+                if (body != null) {
+                    peliculasAdapter.peliculas = body.results
+                    peliculasAdapter.notifyDataSetChanged()
+                }
+            }
+        }
+    }
+
+    private fun navigateTo(pelicula: Pelicula) {
+
+        val intent = Intent(this,DetalleActivity::class.java)
+        intent.putExtra(DetalleActivity.PELICULA_EXTRA,pelicula)
+        startActivity(intent)
     }
 
     private fun saludarUsuario(){
@@ -39,16 +68,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    private fun getPeliculas(): MutableList<Pelicula> {
-        var peliculas: MutableList<Pelicula> = ArrayList()
-
-        peliculas.add(Pelicula(1, "Cadena Perpetua", "1995-03-23","Drama", 9.3))
-        peliculas.add(Pelicula(2, "El padrino", "1972-09-20","Crimen",9.2))
-        peliculas.add(Pelicula(3, "El caballero oscuro", "2008-07-17","Accion",9.0))
-        peliculas.add(Pelicula(4, "El padrino 2", "1974-12-26","Crimen", 9.0))
-
-        return peliculas
-    }
-
 
 }

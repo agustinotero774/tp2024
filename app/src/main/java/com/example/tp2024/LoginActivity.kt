@@ -1,6 +1,12 @@
 package com.example.tp2024
 
+import android.Manifest
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.provider.Telephony.Mms.Intents
 import android.util.Log
@@ -13,6 +19,10 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
@@ -36,6 +46,17 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        // Solicitar permiso de notificación en Android 13 o superior
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS), 100)
+            }
+        }
+
+//---------------------------------------------------------------------------
+
+
+
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.title = "Login"
@@ -72,6 +93,7 @@ class LoginActivity : AppCompatActivity() {
                 val usuarioBdd=usuarioDao.getUsuarioNombre(usuario)
                 if(usuarioBdd!=null && usuarioBdd.password.toString().equals(contrasenia)){
                     if (cbRecordarUsuario.isChecked){
+                        mostrarNotificacionRecordarUsuario()
                         var preferencias= getSharedPreferences(resources.getString(R.string.sp_credenciales),
                             MODE_PRIVATE)
                         preferencias.edit().putString(resources.getString(R.string.nombre_usuario), usuario).apply()
@@ -89,6 +111,51 @@ class LoginActivity : AppCompatActivity() {
 
 
     }
+
+    //-------------------------------------------------------------
+    private fun mostrarNotificacionRecordarUsuario() {
+        val CHANNEL_ID = "canal_recordar_usuario"
+        val NOTIFICATION_ID = 1
+
+        // Verificar si el permiso para las notificaciones ha sido concedido (Android 13 o superior)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            // Si no se ha concedido el permiso, no mostrar la notificación y logear el error
+            Log.e("Permisos", "Permiso de notificaciones no concedido")
+            Toast.makeText(this, "Por favor, concede el permiso de notificaciones.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Crear el canal de notificación (solo necesario para Android 8.0 o superior)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val nombre = "Canal de Recordar Usuario"
+            val descripcionText = "Canal para recordar usuario y contraseña"
+            val importancia = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel(CHANNEL_ID, nombre, importancia).apply {
+                description = descripcionText
+            }
+            // Registrar el canal con el sistema
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        // Crear la notificación
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_notification) // Asegúrate de tener un ícono válido
+            .setContentTitle("Usuario Recordado")
+            .setContentText("El usuario y la contraseña han sido guardados.")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        // Mostrar la notificación
+        with(NotificationManagerCompat.from(this)) {
+            notify(NOTIFICATION_ID, builder.build())
+        }
+    }
+
+
+    //-------------------------------------------------------------
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.itemPrueba){

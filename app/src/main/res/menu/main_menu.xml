@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/itemPrueba"
-        android:title="@string/ir_a_peliculas"
+        android:title="Terminos y condiciones"
         app:showAsAction="never"
         />
 

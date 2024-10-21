@@ -45,6 +45,7 @@ class DetalleActivity : AppCompatActivity() {
         val pelicula=intent.getParcelableExtra<Pelicula>(PELICULA_EXTRA)
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
         if (pelicula != null) {
             supportActionBar!!.title = pelicula.title
             Picasso.get()

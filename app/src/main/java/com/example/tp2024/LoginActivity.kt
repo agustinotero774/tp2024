@@ -159,7 +159,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.itemPrueba){
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, TermsActivity::class.java)
             startActivity(intent)
         }
         return super.onOptionsItemSelected(item)

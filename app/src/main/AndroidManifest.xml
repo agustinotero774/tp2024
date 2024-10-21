@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -17,12 +17,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".TermsActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetalleActivity"
             android:exported="false"
             android:label="@string/title_activity_detalle"
-            android:theme="@style/Theme.Tp2024"
-            android:parentActivityName=".MainActivity"/>
-
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.Tp2024" />
         <activity
             android:name=".FormularioUsuarioActivity"
             android:exported="false" />

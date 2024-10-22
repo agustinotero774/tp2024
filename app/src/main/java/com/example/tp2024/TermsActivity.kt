@@ -30,13 +30,15 @@ class TermsActivity : AppCompatActivity(), FragmentoBotonInterfaz {
             .replace(R.id.contenedorFragmentoTexto,fragmentoScroll)
             .addToBackStack(null)
             .commit()
-/*
+
         val fragmentoBoton = supportFragmentManager
             .findFragmentById(R.id.contenedorFragmentoBoton) as? FragmentoBoton
-        fragmentoBoton?.listener= this*/
+        fragmentoBoton?.listener = this
 
 
     }
+
+
 
     override fun continuar() {
         val intent = Intent(this, LoginActivity::class.java)

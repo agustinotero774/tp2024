@@ -8,8 +8,9 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 
 class FragmentoBoton: Fragment() {
-    var listener : FragmentoBoton? = null
+    var listener : FragmentoBotonInterfaz? = null
     lateinit var continuar : Button
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -18,7 +19,7 @@ class FragmentoBoton: Fragment() {
         val view= inflater.inflate(R.layout.fragmento_boton, container, false)
         continuar = view.findViewById(R.id.botonFragmento)
         continuar.setOnClickListener{
-            listener?.continuar
+            listener?.continuar()
         }
         return view
     }
